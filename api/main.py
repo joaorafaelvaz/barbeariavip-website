@@ -19,6 +19,7 @@ app = FastAPI(title="Barbearia VIP API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://novosite.barbeariavip.com.br",
         "http://localhost:5500",
         "http://127.0.0.1:5500",
         "http://localhost:3000",
