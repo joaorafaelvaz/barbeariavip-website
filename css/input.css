@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-vip-black text-vip-sage font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-vip-cream;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-vip-green text-vip-black font-bold px-8 py-3
+           hover:bg-vip-green/90 transition-all duration-300 uppercase tracking-wider
+           inline-block text-center;
+  }
+  .btn-outline {
+    @apply border-2 border-vip-gold text-vip-gold px-8 py-3
+           hover:bg-vip-gold hover:text-vip-black transition-all duration-300 uppercase tracking-wider
+           inline-block text-center;
+  }
+  .section-padding {
+    @apply py-20 md:py-28 px-4 md:px-8 lg:px-16;
+  }
+  .nav-scrolled {
+    @apply bg-vip-black/90 backdrop-blur-md shadow-lg;
+  }
+}
+
+@layer utilities {
+  .text-glow-green {
+    text-shadow: 0 0 40px rgba(0, 255, 0, 0.5), 0 0 80px rgba(0, 255, 0, 0.3);
+  }
+}

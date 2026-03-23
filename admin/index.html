@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Barbearia VIP Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-vip-black min-h-screen font-body text-vip-sage">
+
+  <!-- Header -->
+  <header id="admin-header" class="hidden bg-[#0D0D0D] border-b border-white/10 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="font-heading font-extrabold text-lg text-vip-cream">@<span class="text-vip-green">VIP</span></span>
+        <span class="text-vip-sage text-sm ml-2">| Admin</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <span id="admin-email" class="text-vip-sage text-sm"></span>
+        <button id="logout-btn" class="text-vip-sage text-sm hover:text-vip-green transition-colors">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="app" class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Views are rendered here by JS -->
+  </main>
+
+  <script>
+    const API_BASE = window.location.port === '5500' || window.location.port === '5501'
+      ? 'http://localhost:8000'
+      : '';
+
+    // ========== STATE ==========
+    let token = localStorage.getItem('admin_token');
+    let currentPosts = [];
+    let editingPost = null;
+
+    // ========== ROUTER ==========
+    function router() {
+      const hash = location.hash || '#/login';
+      if (!token && hash !== '#/login') {
+        location.hash = '#/login';
+        return;
+      }
+      if (token && hash === '#/login') {
+        location.hash = '#/dashboard';
+        return;
+      }
+
+      document.getElementById('admin-header').classList.toggle('hidden', !token);
+
+      if (hash === '#/login') renderLogin();
+      else if (hash === '#/dashboard') renderDashboard();
+      else if (hash.startsWith('#/editor')) {
+        const id = hash.split('/')[2];
+        renderEditor(id);
+      }
+    }
+
+    window.addEventListener('hashchange', router);
+
+    // ========== API HELPERS ==========
+    async function apiFetch(path, options = {}) {
+      const headers = { 'Content-Type': 'application/json', ...options.headers };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+      if (res.status === 401) {
+        token = null;
+        localStorage.removeItem('admin_token');
+        location.hash = '#/login';
+        throw new Error('Unauthorized');
+      }
+      return res;
+    }
+
+    // ========== LOGIN VIEW ==========
+    function renderLogin() {
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="flex items-center justify-center min-h-[80vh]">
+          <div class="w-full max-w-md">
+            <div class="text-center mb-8">
+              <h1 class="font-heading font-extrabold text-3xl text-vip-cream">
+                @<span class="text-vip-green">VIP</span> Admin
+              </h1>
+              <p class="text-vip-sage mt-2">Painel de gerenciamento do blog</p>
+            </div>
+            <form id="login-form" class="space-y-4">
+              <div>
+                <label class="text-vip-cream text-sm font-semibold block mb-2">Email</label>
+                <input type="email" id="login-email" required
+                  class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors"
+                  placeholder="admin@barbeariavip.com.br">
+              </div>
+              <div>
+                <label class="text-vip-cream text-sm font-semibold block mb-2">Senha</label>
+                <input type="password" id="login-password" required
+                  class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors"
+                  placeholder="••••••••">
+              </div>
+              <div id="login-error" class="hidden text-red-400 text-sm"></div>
+              <button type="submit" class="w-full bg-vip-green text-vip-black font-bold py-3 rounded-lg hover:bg-vip-green/90 transition-colors uppercase tracking-wider">
+                Entrar
+              </button>
+            </form>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const errEl = document.getElementById('login-error');
+
+        try {
+          const res = await fetch(`${API_BASE}/api/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+          });
+          if (!res.ok) throw new Error('Invalid credentials');
+          const data = await res.json();
+          token = data.access_token;
+          localStorage.setItem('admin_token', token);
+          document.getElementById('admin-email').textContent = email;
+          location.hash = '#/dashboard';
+        } catch {
+          errEl.textContent = 'Email ou senha inválidos';
+          errEl.classList.remove('hidden');
+        }
+      });
+    }
+
+    // ========== DASHBOARD VIEW ==========
+    async function renderDashboard() {
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="font-heading font-extrabold text-2xl text-vip-cream">Posts do Blog</h1>
+          <a href="#/editor" class="bg-vip-green text-vip-black font-bold px-6 py-2.5 rounded-lg hover:bg-vip-green/90 transition-colors text-sm uppercase tracking-wider">
+            + Novo Post
+          </a>
+        </div>
+        <div id="posts-list" class="text-vip-sage text-center py-12">Carregando...</div>
+      `;
+
+      try {
+        const res = await apiFetch('/api/admin/posts');
+        currentPosts = await res.json();
+        const listEl = document.getElementById('posts-list');
+
+        if (currentPosts.length === 0) {
+          listEl.innerHTML = '<p class="text-vip-sage">Nenhum post encontrado. Crie o primeiro!</p>';
+          return;
+        }
+
+        listEl.innerHTML = `
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="border-b border-white/10 text-vip-cream text-sm uppercase tracking-wider">
+                  <th class="py-3 px-4">Título</th>
+                  <th class="py-3 px-4">Status</th>
+                  <th class="py-3 px-4">Data</th>
+                  <th class="py-3 px-4 text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${currentPosts.map(p => `
+                  <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                    <td class="py-3 px-4 text-vip-cream font-medium">${p.title}</td>
+                    <td class="py-3 px-4">
+                      <span class="px-2 py-1 rounded text-xs font-semibold ${
+                        p.status === 'published'
+                          ? 'bg-vip-green/20 text-vip-green'
+                          : 'bg-vip-gold/20 text-vip-gold'
+                      }">${p.status === 'published' ? 'Publicado' : 'Rascunho'}</span>
+                    </td>
+                    <td class="py-3 px-4 text-sm">${formatDate(p.created_at)}</td>
+                    <td class="py-3 px-4 text-right">
+                      <a href="#/editor/${p.id}" class="text-vip-green hover:underline text-sm mr-4">Editar</a>
+                      <button onclick="deletePost(${p.id})" class="text-red-400 hover:underline text-sm">Excluir</button>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      } catch {
+        document.getElementById('posts-list').innerHTML = '<p class="text-red-400">Erro ao carregar posts. Verifique se a API está rodando.</p>';
+      }
+    }
+
+    // ========== EDITOR VIEW ==========
+    async function renderEditor(postId) {
+      const app = document.getElementById('app');
+      let post = { title: '', excerpt: '', content: '', image_url: '', status: 'draft' };
+
+      if (postId) {
+        try {
+          const res = await apiFetch(`/api/posts/${postId}`);
+          post = await res.json();
+        } catch {
+          app.innerHTML = '<p class="text-red-400">Erro ao carregar post.</p>';
+          return;
+        }
+      }
+
+      app.innerHTML = `
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="font-heading font-extrabold text-2xl text-vip-cream">
+            ${postId ? 'Editar Post' : 'Novo Post'}
+          </h1>
+          <a href="#/dashboard" class="text-vip-sage hover:text-vip-green transition-colors text-sm">&larr; Voltar</a>
+        </div>
+        <form id="editor-form" class="space-y-5 max-w-3xl">
+          <div>
+            <label class="text-vip-cream text-sm font-semibold block mb-2">Título *</label>
+            <input type="text" id="ed-title" required value="${escapeHtml(post.title)}"
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors"
+              placeholder="Título do post">
+          </div>
+          <div>
+            <label class="text-vip-cream text-sm font-semibold block mb-2">Resumo</label>
+            <input type="text" id="ed-excerpt" value="${escapeHtml(post.excerpt || '')}"
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors"
+              placeholder="Breve descrição do post">
+          </div>
+          <div>
+            <label class="text-vip-cream text-sm font-semibold block mb-2">Conteúdo *</label>
+            <textarea id="ed-content" required rows="12"
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors resize-y font-mono text-sm"
+              placeholder="Conteúdo do post (suporta markdown)">${escapeHtml(post.content)}</textarea>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label class="text-vip-cream text-sm font-semibold block mb-2">Imagem de Capa</label>
+              <div class="flex gap-2">
+                <input type="text" id="ed-image" value="${escapeHtml(post.image_url || '')}"
+                  class="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors text-sm"
+                  placeholder="/img/blog/foto.jpg">
+                <label class="bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-vip-cream text-sm cursor-pointer hover:border-vip-green/50 transition-colors">
+                  Upload
+                  <input type="file" id="ed-file" accept="image/*" class="hidden">
+                </label>
+              </div>
+              <div id="upload-status" class="text-xs mt-1"></div>
+            </div>
+            <div>
+              <label class="text-vip-cream text-sm font-semibold block mb-2">Status</label>
+              <select id="ed-status"
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream focus:border-vip-green/50 focus:outline-none transition-colors">
+                <option value="draft" ${post.status === 'draft' ? 'selected' : ''}>Rascunho</option>
+                <option value="published" ${post.status === 'published' ? 'selected' : ''}>Publicado</option>
+              </select>
+            </div>
+          </div>
+          <div id="editor-error" class="hidden text-red-400 text-sm"></div>
+          <div class="flex gap-4">
+            <button type="submit" class="bg-vip-green text-vip-black font-bold px-8 py-3 rounded-lg hover:bg-vip-green/90 transition-colors uppercase tracking-wider">
+              ${postId ? 'Salvar Alterações' : 'Criar Post'}
+            </button>
+            <a href="#/dashboard" class="border border-white/10 text-vip-sage px-8 py-3 rounded-lg hover:border-vip-green/50 transition-colors text-center">
+              Cancelar
+            </a>
+          </div>
+        </form>
+      `;
+
+      // File upload handler
+      document.getElementById('ed-file').addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const statusEl = document.getElementById('upload-status');
+        statusEl.textContent = 'Enviando...';
+        statusEl.className = 'text-xs mt-1 text-vip-sage';
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+          const res = await fetch(`${API_BASE}/api/admin/upload`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}` },
+            body: formData,
+          });
+          if (!res.ok) throw new Error('Upload failed');
+          const data = await res.json();
+          document.getElementById('ed-image').value = data.url;
+          statusEl.textContent = 'Upload concluído!';
+          statusEl.className = 'text-xs mt-1 text-vip-green';
+        } catch {
+          statusEl.textContent = 'Erro no upload.';
+          statusEl.className = 'text-xs mt-1 text-red-400';
+        }
+      });
+
+      // Form submit
+      document.getElementById('editor-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const errEl = document.getElementById('editor-error');
+        const body = {
+          title: document.getElementById('ed-title').value,
+          excerpt: document.getElementById('ed-excerpt').value || null,
+          content: document.getElementById('ed-content').value,
+          image_url: document.getElementById('ed-image').value || null,
+          status: document.getElementById('ed-status').value,
+        };
+
+        try {
+          const url = postId ? `/api/admin/posts/${postId}` : '/api/admin/posts';
+          const method = postId ? 'PUT' : 'POST';
+          const res = await apiFetch(url, { method, body: JSON.stringify(body) });
+          if (!res.ok) throw new Error('Save failed');
+          location.hash = '#/dashboard';
+        } catch {
+          errEl.textContent = 'Erro ao salvar. Verifique os campos.';
+          errEl.classList.remove('hidden');
+        }
+      });
+    }
+
+    // ========== DELETE POST ==========
+    async function deletePost(id) {
+      if (!confirm('Tem certeza que deseja excluir este post?')) return;
+      try {
+        await apiFetch(`/api/admin/posts/${id}`, { method: 'DELETE' });
+        renderDashboard();
+      } catch {
+        alert('Erro ao excluir post.');
+      }
+    }
+
+    // ========== HELPERS ==========
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '-';
+      return new Date(dateStr).toLocaleDateString('pt-BR');
+    }
+
+    // ========== LOGOUT ==========
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      token = null;
+      localStorage.removeItem('admin_token');
+      location.hash = '#/login';
+    });
+
+    // ========== INIT ==========
+    router();
+  </script>
+</body>
+</html>

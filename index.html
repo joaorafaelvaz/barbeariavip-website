@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbearia VIP | Barbearia Premium #1 da América Latina</title>
+  <meta name="description" content="Barbearia VIP - A pausa que você merece. Barbearia premium #1 da América Latina desde 1998. Corte, barba, massagem e muito mais.">
+  <meta property="og:title" content="Barbearia VIP | Barbearia Premium">
+  <meta property="og:description" content="A pausa que você merece. Barbearia premium #1 da América Latina.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/hero.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- AOS.js -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Tailwind Compiled -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAVEGAÇÃO FIXA ========== -->
+  <nav id="main-nav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2">
+        <img src="img/logo.png" alt="Barbearia VIP" class="h-10">
+        <span class="font-heading font-extrabold text-xl text-vip-cream">
+          @<span class="text-vip-green">VIP</span>
+        </span>
+      </a>
+
+      <!-- Nav Links (Desktop) -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#home" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Início</a>
+        <a href="#sobre" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Sobre</a>
+        <a href="#servicos" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Serviços</a>
+        <a href="#produtos" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Produtos</a>
+        <a href="#unidades" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Unidades</a>
+        <a href="#franquia" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Franquia</a>
+        <a href="#blog" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Blog</a>
+        <a href="#contato" class="text-vip-cream/80 hover:text-vip-green transition-colors text-sm uppercase tracking-wider">Contato</a>
+      </div>
+
+      <!-- CTA + Hamburger -->
+      <div class="flex items-center gap-4">
+        <a href="#franquia" class="hidden md:inline-block btn-primary text-sm py-2 px-6">Seja Franqueado</a>
+        <button id="hamburger" class="lg:hidden text-vip-cream" aria-label="Menu">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-vip-black/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center gap-8">
+      <button id="mobile-close" class="absolute top-6 right-6 text-vip-cream">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <a href="#home" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Início</a>
+      <a href="#sobre" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Sobre</a>
+      <a href="#servicos" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Serviços</a>
+      <a href="#produtos" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Produtos</a>
+      <a href="#unidades" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Unidades</a>
+      <a href="#franquia" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Franquia</a>
+      <a href="#blog" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Blog</a>
+      <a href="#contato" class="text-vip-cream text-2xl font-heading font-bold hover:text-vip-green transition-colors">Contato</a>
+      <a href="#franquia" class="btn-primary mt-4">Seja Franqueado</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('img/hero.jpg');"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-vip-black/70 via-vip-black/50 to-vip-black"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center px-4" data-aos="fade-up">
+      <h1 class="font-heading font-extrabold leading-none">
+        <span class="block text-6xl md:text-7xl lg:text-8xl text-vip-cream">BARBEARIA</span>
+        <span class="block text-7xl md:text-8xl lg:text-9xl text-vip-green text-glow-green mt-2">VIP</span>
+      </h1>
+      <p class="text-vip-sage text-base md:text-lg uppercase tracking-[0.3em] mt-6" data-aos="fade-up" data-aos-delay="200">
+        A pausa que você merece
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10" data-aos="fade-up" data-aos-delay="400">
+        <a href="#unidades" class="btn-primary">Encontrar Unidade</a>
+        <a href="#servicos" class="btn-outline">Nossos Serviços</a>
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="absolute bottom-0 left-0 w-full bg-vip-black/80 backdrop-blur-sm border-t border-white/10">
+      <div class="max-w-5xl mx-auto grid grid-cols-3 divide-x divide-white/10">
+        <div class="py-6 text-center" data-aos="fade-up" data-aos-delay="500">
+          <p class="text-vip-green font-heading font-extrabold text-2xl md:text-3xl">#1</p>
+          <p class="text-vip-sage text-xs md:text-sm mt-1 uppercase tracking-wider">América Latina</p>
+        </div>
+        <div class="py-6 text-center" data-aos="fade-up" data-aos-delay="600">
+          <p class="text-vip-green font-heading font-extrabold text-2xl md:text-3xl" data-counter="1998">0</p>
+          <p class="text-vip-sage text-xs md:text-sm mt-1 uppercase tracking-wider">Desde</p>
+        </div>
+        <div class="py-6 text-center" data-aos="fade-up" data-aos-delay="700">
+          <p class="text-vip-green font-heading font-extrabold text-2xl md:text-3xl">
+            +<span data-counter="450">0</span>mil
+          </p>
+          <p class="text-vip-sage text-xs md:text-sm mt-1 uppercase tracking-wider">Clientes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SOBRE ========== -->
+  <section id="sobre" class="section-padding overflow-hidden">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Imagem -->
+      <div class="relative" data-aos="fade-right">
+        <div class="overflow-hidden rounded-lg">
+          <img src="img/about.jpg" alt="Interior Barbearia VIP" class="about-image w-full h-[400px] lg:h-[550px] object-cover" loading="lazy">
+        </div>
+        <div class="absolute -left-4 top-10 bottom-10 w-1 bg-gradient-to-b from-vip-gold via-vip-gold/50 to-transparent rounded-full"></div>
+      </div>
+
+      <!-- Texto -->
+      <div data-aos="fade-left">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">Sobre Nós</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4 leading-tight">
+          A Experiência<br><span class="text-vip-green">VIP</span>
+        </h2>
+        <p class="text-vip-sage mt-6 leading-relaxed text-base md:text-lg">
+          Desde 1998, a Barbearia VIP transforma o simples ato de cortar cabelo em uma experiência premium.
+          Nascida em Florianópolis, crescemos para nos tornar a <strong class="text-vip-cream">barbearia #1 da América Latina</strong>,
+          com mais de 40 unidades em 6 estados brasileiros.
+        </p>
+        <p class="text-vip-sage mt-4 leading-relaxed text-base md:text-lg">
+          Nosso ambiente exclusivo combina tradição e modernidade, onde cada detalhe foi pensado para proporcionar
+          a pausa que você merece — do corte impecável ao open bar, do atendimento personalizado ao espaço kids.
+        </p>
+        <div class="grid grid-cols-3 gap-6 mt-10">
+          <div class="text-center">
+            <p class="text-vip-green font-heading font-extrabold text-2xl" data-counter="27">0</p>
+            <p class="text-vip-sage text-sm mt-1">Anos de história</p>
+          </div>
+          <div class="text-center">
+            <p class="text-vip-green font-heading font-extrabold text-2xl" data-counter="40">0</p>
+            <p class="text-vip-sage text-sm mt-1">Unidades</p>
+          </div>
+          <div class="text-center">
+            <p class="text-vip-green font-heading font-extrabold text-2xl"><span data-counter="6">0</span></p>
+            <p class="text-vip-sage text-sm mt-1">Estados</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVIÇOS ========== -->
+  <section id="servicos" class="section-padding bg-[#0D0D0D]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">O que oferecemos</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4">
+          Nossos <span class="text-vip-green">Serviços</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <!-- Corte Premium -->
+        <div class="group relative h-[300px] md:h-[350px] rounded-lg overflow-hidden cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+          <img src="img/services/corte.jpg" alt="Corte Premium" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-vip-black via-vip-black/60 to-transparent transition-all duration-500"></div>
+          <div class="absolute inset-0 border-2 border-transparent group-hover:border-vip-green/50 rounded-lg transition-all duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 transform transition-all duration-500">
+            <h3 class="text-xl md:text-2xl font-heading font-bold text-vip-cream">Corte Premium</h3>
+            <p class="text-vip-sage mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-sm md:text-base">
+              Técnicas modernas e clássicas com acabamento perfeito. Inclui lavagem e finalização profissional.
+            </p>
+          </div>
+        </div>
+
+        <!-- Barba Completa -->
+        <div class="group relative h-[300px] md:h-[350px] rounded-lg overflow-hidden cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+          <img src="img/services/barba.jpg" alt="Barba Completa" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-vip-black via-vip-black/60 to-transparent transition-all duration-500"></div>
+          <div class="absolute inset-0 border-2 border-transparent group-hover:border-vip-green/50 rounded-lg transition-all duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 transform transition-all duration-500">
+            <h3 class="text-xl md:text-2xl font-heading font-bold text-vip-cream">Barba Completa</h3>
+            <p class="text-vip-sage mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-sm md:text-base">
+              Modelagem com navalha, toalha quente e produtos premium para uma barba impecável.
+            </p>
+          </div>
+        </div>
+
+        <!-- Corte Kids -->
+        <div class="group relative h-[300px] md:h-[350px] rounded-lg overflow-hidden cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+          <img src="img/services/kids.jpg" alt="Espaço Kids" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-vip-black via-vip-black/60 to-transparent transition-all duration-500"></div>
+          <div class="absolute inset-0 border-2 border-transparent group-hover:border-vip-green/50 rounded-lg transition-all duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 transform transition-all duration-500">
+            <h3 class="text-xl md:text-2xl font-heading font-bold text-vip-cream">Espaço Kids</h3>
+            <p class="text-vip-sage mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-sm md:text-base">
+              Ambiente lúdico e divertido para os pequenos curtirem o corte com games e conforto.
+            </p>
+          </div>
+        </div>
+
+        <!-- Combo VIP -->
+        <div class="group relative h-[300px] md:h-[350px] rounded-lg overflow-hidden cursor-pointer" data-aos="fade-up" data-aos-delay="400">
+          <img src="img/services/combo.jpg" alt="Combo VIP" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-vip-black via-vip-black/60 to-transparent transition-all duration-500"></div>
+          <div class="absolute inset-0 border-2 border-transparent group-hover:border-vip-green/50 rounded-lg transition-all duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 transform transition-all duration-500">
+            <h3 class="text-xl md:text-2xl font-heading font-bold text-vip-cream">Combo VIP</h3>
+            <p class="text-vip-sage mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-sm md:text-base">
+              A experiência completa: corte + barba + massagem facial + open bar. O pacote definitivo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRODUTOS ========== -->
+  <section id="produtos" class="section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">Grooming Superior</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4">
+          Nossos <span class="text-vip-green">Produtos</span>
+        </h2>
+      </div>
+
+      <!-- Carousel -->
+      <div class="relative" data-aos="fade-up" data-aos-delay="200">
+        <div id="products-carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide" style="-ms-overflow-style: none; scrollbar-width: none;">
+          <!-- Product 1 -->
+          <div class="snap-center min-w-[260px] md:min-w-[300px] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex-shrink-0 group">
+            <div class="h-[250px] overflow-hidden">
+              <img src="img/products/placeholder.jpg" alt="Pomada Modeladora VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="p-5">
+              <span class="text-vip-gold text-xs uppercase tracking-wider">Styling</span>
+              <h3 class="text-vip-cream font-heading font-bold mt-1">Pomada Modeladora VIP</h3>
+              <p class="text-vip-sage text-sm mt-2">Fixação forte com acabamento matte. Fórmula premium à base d'água.</p>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="snap-center min-w-[260px] md:min-w-[300px] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex-shrink-0 group">
+            <div class="h-[250px] overflow-hidden">
+              <img src="img/products/placeholder.jpg" alt="Óleo para Barba VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="p-5">
+              <span class="text-vip-gold text-xs uppercase tracking-wider">Barba</span>
+              <h3 class="text-vip-cream font-heading font-bold mt-1">Óleo para Barba VIP</h3>
+              <p class="text-vip-sage text-sm mt-2">Blend exclusivo de óleos naturais que hidrata e dá brilho à barba.</p>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="snap-center min-w-[260px] md:min-w-[300px] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex-shrink-0 group">
+            <div class="h-[250px] overflow-hidden">
+              <img src="img/products/placeholder.jpg" alt="Shampoo Premium VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="p-5">
+              <span class="text-vip-gold text-xs uppercase tracking-wider">Cabelo</span>
+              <h3 class="text-vip-cream font-heading font-bold mt-1">Shampoo Premium VIP</h3>
+              <p class="text-vip-sage text-sm mt-2">Limpeza profunda com ingredientes naturais. Para todos os tipos de cabelo.</p>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="snap-center min-w-[260px] md:min-w-[300px] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex-shrink-0 group">
+            <div class="h-[250px] overflow-hidden">
+              <img src="img/products/placeholder.jpg" alt="Aftershave VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="p-5">
+              <span class="text-vip-gold text-xs uppercase tracking-wider">Pós-barba</span>
+              <h3 class="text-vip-cream font-heading font-bold mt-1">Aftershave VIP</h3>
+              <p class="text-vip-sage text-sm mt-2">Sensação refrescante com ação calmante e hidratante pós-barba.</p>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="snap-center min-w-[260px] md:min-w-[300px] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex-shrink-0 group">
+            <div class="h-[250px] overflow-hidden">
+              <img src="img/products/placeholder.jpg" alt="Cera Texturizadora VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="p-5">
+              <span class="text-vip-gold text-xs uppercase tracking-wider">Styling</span>
+              <h3 class="text-vip-cream font-heading font-bold mt-1">Cera Texturizadora VIP</h3>
+              <p class="text-vip-sage text-sm mt-2">Textura e definição com fixação média. Ideal para looks naturais.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Arrows -->
+        <button id="carousel-prev" class="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center bg-vip-black/80 border border-white/10 rounded-full hover:border-vip-green/50 transition-colors" aria-label="Anterior">
+          <svg class="w-5 h-5 text-vip-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="carousel-next" class="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center bg-vip-black/80 border border-white/10 rounded-full hover:border-vip-green/50 transition-colors" aria-label="Próximo">
+          <svg class="w-5 h-5 text-vip-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <div class="text-center mt-10" data-aos="fade-up">
+        <a href="#" class="btn-outline">Ver Todos os Produtos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOG ========== -->
+  <section id="blog" class="section-padding bg-[#0D0D0D]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">Últimas Novidades</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4">
+          Nosso <span class="text-vip-green">Blog</span>
+        </h2>
+      </div>
+
+      <!-- Blog Cards (fallback estático / substituído pelo JS) -->
+      <div id="blog-container">
+        <div id="blog-fallback" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Featured Post -->
+          <div class="lg:col-span-2 group" data-aos="fade-up">
+            <div class="relative h-[350px] lg:h-full rounded-lg overflow-hidden">
+              <img src="img/blog/placeholder-1.jpg" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"
+                onerror="this.parentElement.classList.add('bg-gradient-to-br','from-vip-black','to-[#1a1a1a]'); this.style.display='none';">
+              <div class="absolute inset-0 bg-gradient-to-t from-vip-black via-vip-black/40 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <span class="text-vip-gold text-xs uppercase tracking-wider">Tendências</span>
+                <h3 class="text-xl md:text-2xl font-heading font-bold text-vip-cream mt-2">
+                  As Principais Tendências de Corte Masculino para 2026
+                </h3>
+                <p class="text-vip-sage mt-2 text-sm line-clamp-2">
+                  Descubra os cortes que estão dominando as melhores barbearias do mundo neste ano.
+                </p>
+                <span class="text-vip-gold/70 text-xs mt-3 block">15 Mar, 2026</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small Posts -->
+          <div class="flex flex-col gap-6">
+            <div class="group rounded-lg overflow-hidden bg-white/5 border border-white/10" data-aos="fade-up" data-aos-delay="100">
+              <div class="h-[180px] overflow-hidden">
+                <img src="img/blog/placeholder-2.jpg" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"
+                  onerror="this.parentElement.classList.add('bg-gradient-to-br','from-vip-black','to-[#1a1a1a]'); this.style.display='none';">
+              </div>
+              <div class="p-5">
+                <span class="text-vip-gold text-xs uppercase tracking-wider">Cuidados</span>
+                <h3 class="text-base font-heading font-bold text-vip-cream mt-2">Como Manter a Barba Perfeita Entre as Visitas</h3>
+                <span class="text-vip-gold/70 text-xs mt-2 block">10 Mar, 2026</span>
+              </div>
+            </div>
+
+            <div class="group rounded-lg overflow-hidden bg-white/5 border border-white/10" data-aos="fade-up" data-aos-delay="200">
+              <div class="h-[180px] overflow-hidden">
+                <img src="img/blog/placeholder-3.jpg" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"
+                  onerror="this.parentElement.classList.add('bg-gradient-to-br','from-vip-black','to-[#1a1a1a]'); this.style.display='none';">
+              </div>
+              <div class="p-5">
+                <span class="text-vip-gold text-xs uppercase tracking-wider">Lifestyle</span>
+                <h3 class="text-base font-heading font-bold text-vip-cream mt-2">Open Bar na Barbearia: A Experiência VIP Completa</h3>
+                <span class="text-vip-gold/70 text-xs mt-2 block">05 Mar, 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10" data-aos="fade-up">
+        <a href="#" class="btn-outline">Ver Todos os Artigos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== UNIDADES ========== -->
+  <section id="unidades" class="section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">Onde Estamos</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4">
+          Encontre a <span class="text-vip-green">VIP</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Lista de Unidades -->
+        <div class="space-y-4 max-h-[500px] overflow-y-auto pr-2" data-aos="fade-right">
+          <!-- Unidade 1 - HQ -->
+          <div class="unit-card bg-white/5 border border-white/10 rounded-lg p-5 cursor-pointer hover:border-vip-green/50 transition-all"
+               data-lat="-27.5789" data-lng="-48.5096" data-name="Barbearia VIP - Santa Mônica">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="font-heading font-bold text-vip-cream">Barbearia VIP - Santa Mônica</h3>
+                <p class="text-vip-sage text-sm mt-1">Av. Madre Benvenuta, 1168 - Santa Mônica</p>
+                <p class="text-vip-sage text-sm">Florianópolis - SC</p>
+                <p class="text-vip-gold text-xs mt-2">Seg-Sex 09:00-20:00 | Sáb 09:00-18:00</p>
+              </div>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=-27.5789,-48.5096" target="_blank" rel="noopener"
+                 class="text-vip-green text-sm hover:underline whitespace-nowrap ml-4">Como chegar →</a>
+            </div>
+          </div>
+
+          <!-- Unidade 2 -->
+          <div class="unit-card bg-white/5 border border-white/10 rounded-lg p-5 cursor-pointer hover:border-vip-green/50 transition-all"
+               data-lat="-27.5954" data-lng="-48.5480" data-name="Barbearia VIP - Centro">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="font-heading font-bold text-vip-cream">Barbearia VIP - Centro</h3>
+                <p class="text-vip-sage text-sm mt-1">R. Felipe Schmidt, 515 - Centro</p>
+                <p class="text-vip-sage text-sm">Florianópolis - SC</p>
+                <p class="text-vip-gold text-xs mt-2">Seg-Sex 09:00-20:00 | Sáb 09:00-18:00</p>
+              </div>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=-27.5954,-48.5480" target="_blank" rel="noopener"
+                 class="text-vip-green text-sm hover:underline whitespace-nowrap ml-4">Como chegar →</a>
+            </div>
+          </div>
+
+          <!-- Unidade 3 -->
+          <div class="unit-card bg-white/5 border border-white/10 rounded-lg p-5 cursor-pointer hover:border-vip-green/50 transition-all"
+               data-lat="-26.9044" data-lng="-48.6616" data-name="Barbearia VIP - Itajaí">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="font-heading font-bold text-vip-cream">Barbearia VIP - Itajaí</h3>
+                <p class="text-vip-sage text-sm mt-1">R. Hercílio Luz, 44 - Centro</p>
+                <p class="text-vip-sage text-sm">Itajaí - SC</p>
+                <p class="text-vip-gold text-xs mt-2">Seg-Sex 09:00-20:00 | Sáb 09:00-18:00</p>
+              </div>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=-26.9044,-48.6616" target="_blank" rel="noopener"
+                 class="text-vip-green text-sm hover:underline whitespace-nowrap ml-4">Como chegar →</a>
+            </div>
+          </div>
+
+          <!-- Unidade 4 -->
+          <div class="unit-card bg-white/5 border border-white/10 rounded-lg p-5 cursor-pointer hover:border-vip-green/50 transition-all"
+               data-lat="-27.2423" data-lng="-48.6343" data-name="Barbearia VIP - Balneário Camboriú">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="font-heading font-bold text-vip-cream">Barbearia VIP - Balneário Camboriú</h3>
+                <p class="text-vip-sage text-sm mt-1">Av. Atlântica, 2500 - Centro</p>
+                <p class="text-vip-sage text-sm">Balneário Camboriú - SC</p>
+                <p class="text-vip-gold text-xs mt-2">Seg-Sex 09:00-20:00 | Sáb 09:00-18:00</p>
+              </div>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=-27.2423,-48.6343" target="_blank" rel="noopener"
+                 class="text-vip-green text-sm hover:underline whitespace-nowrap ml-4">Como chegar →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps Embed -->
+        <div class="rounded-lg overflow-hidden h-[400px] lg:h-[500px]" data-aos="fade-left">
+          <iframe id="map-iframe"
+            src="https://maps.google.com/maps?q=-27.5789,-48.5096&z=14&output=embed"
+            class="w-full h-full border-0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FRANQUIA ========== -->
+  <section id="franquia" class="relative section-padding overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('img/hero.jpg');"></div>
+    <div class="absolute inset-0 bg-vip-black/85"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">Oportunidade de Negócio</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4">
+          Seja um Franqueado <span class="text-vip-green">VIP</span>
+        </h2>
+        <p class="text-vip-sage max-w-2xl mx-auto mt-4">
+          Faça parte da maior rede de barbearias premium da América Latina. Crescimento médio anual de 31%.
+        </p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+          <p class="text-vip-green text-xs uppercase tracking-wider mb-2">Investimento</p>
+          <p class="text-vip-cream font-heading font-extrabold text-2xl md:text-3xl">
+            R$<span data-counter="250">0</span>K
+          </p>
+          <p class="text-vip-sage text-sm mt-1">a R$350K+</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+          <p class="text-vip-green text-xs uppercase tracking-wider mb-2">Faturamento Anual</p>
+          <p class="text-vip-cream font-heading font-extrabold text-2xl md:text-3xl">
+            R$<span data-counter="1.4">0</span>M
+          </p>
+          <p class="text-vip-sage text-sm mt-1">projetado</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+          <p class="text-vip-green text-xs uppercase tracking-wider mb-2">Margem de Lucro</p>
+          <p class="text-vip-cream font-heading font-extrabold text-2xl md:text-3xl">
+            <span data-counter="20">0</span>-40%
+          </p>
+          <p class="text-vip-sage text-sm mt-1">líquida</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="400">
+          <p class="text-vip-green text-xs uppercase tracking-wider mb-2">Payback</p>
+          <p class="text-vip-cream font-heading font-extrabold text-2xl md:text-3xl">
+            <span data-counter="16">0</span> meses
+          </p>
+          <p class="text-vip-sage text-sm mt-1">em média</p>
+        </div>
+      </div>
+
+      <!-- Benefits -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 max-w-3xl mx-auto" data-aos="fade-up">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-vip-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-vip-cream text-sm">Marca consolidada há 27 anos</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-vip-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-vip-cream text-sm">Suporte completo na implantação</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-vip-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-vip-cream text-sm">Treinamento contínuo da equipe</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-vip-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-vip-cream text-sm">Marketing e identidade visual</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-vip-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-vip-cream text-sm">Fornecedores homologados</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-vip-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span class="text-vip-cream text-sm">Sistema de gestão integrado</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center" data-aos="fade-up">
+        <a href="https://wa.me/5548991126977?text=Ol%C3%A1!%20Tenho%20interesse%20na%20franquia%20Barbearia%20VIP."
+           target="_blank" rel="noopener"
+           class="btn-primary text-lg px-12 py-4 inline-block">
+          Quero Ser Franqueado
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="section-padding bg-[#111111]">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">Dúvidas</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4">
+          Perguntas <span class="text-vip-green">Frequentes</span>
+        </h2>
+      </div>
+
+      <div class="space-y-3" data-aos="fade-up">
+        <!-- FAQ 1 -->
+        <div class="border border-white/10 rounded-lg overflow-hidden">
+          <button class="faq-question w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-heading font-bold text-vip-cream pr-4">Preciso agendar horário?</span>
+            <svg class="faq-icon w-5 h-5 text-vip-green flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12M6 12h12"/>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-vip-sage text-sm leading-relaxed">
+              Recomendamos o agendamento para garantir seu horário, mas também aceitamos clientes por ordem de chegada conforme disponibilidade da unidade.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="border border-white/10 rounded-lg overflow-hidden">
+          <button class="faq-question w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-heading font-bold text-vip-cream pr-4">Quais formas de pagamento são aceitas?</span>
+            <svg class="faq-icon w-5 h-5 text-vip-green flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12M6 12h12"/>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-vip-sage text-sm leading-relaxed">
+              Aceitamos cartões de crédito e débito, PIX, dinheiro e vale-presente VIP. Parcelamento disponível para pacotes e produtos.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="border border-white/10 rounded-lg overflow-hidden">
+          <button class="faq-question w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-heading font-bold text-vip-cream pr-4">O open bar está incluso em todos os serviços?</span>
+            <svg class="faq-icon w-5 h-5 text-vip-green flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12M6 12h12"/>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-vip-sage text-sm leading-relaxed">
+              Sim! O open bar com cerveja, café e outras bebidas está disponível para todos os clientes durante o atendimento, independente do serviço escolhido.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="border border-white/10 rounded-lg overflow-hidden">
+          <button class="faq-question w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-heading font-bold text-vip-cream pr-4">A partir de qual idade as crianças podem cortar?</span>
+            <svg class="faq-icon w-5 h-5 text-vip-green flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12M6 12h12"/>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-vip-sage text-sm leading-relaxed">
+              Nosso Espaço Kids atende crianças a partir de 2 anos. O ambiente foi projetado com cadeiras temáticas, games e tablets para tornar a experiência divertida.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="border border-white/10 rounded-lg overflow-hidden">
+          <button class="faq-question w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-heading font-bold text-vip-cream pr-4">Como funciona o processo de franquia?</span>
+            <svg class="faq-icon w-5 h-5 text-vip-green flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12M6 12h12"/>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-vip-sage text-sm leading-relaxed">
+              O processo começa com uma conversa inicial via WhatsApp, seguido de análise de perfil, apresentação do modelo de negócio, visita a uma unidade e assinatura do contrato. O investimento total varia de R$250K a R$350K+.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="border border-white/10 rounded-lg overflow-hidden">
+          <button class="faq-question w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-heading font-bold text-vip-cream pr-4">Vocês vendem produtos online?</span>
+            <svg class="faq-icon w-5 h-5 text-vip-green flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12M6 12h12"/>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-vip-sage text-sm leading-relaxed">
+              Nossos produtos de grooming estão disponíveis em todas as unidades. Para compras online, entre em contato via WhatsApp e enviaremos para todo o Brasil.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTATO ========== -->
+  <section id="contato" class="section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-vip-gold text-sm uppercase tracking-[0.2em] font-semibold">Fale Conosco</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mt-4">
+          Entre em <span class="text-vip-green">Contato</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Formulário -->
+        <div data-aos="fade-right">
+          <form id="contact-form" class="space-y-5">
+            <div>
+              <label for="name" class="text-vip-cream text-sm font-semibold block mb-2">Nome *</label>
+              <input type="text" id="name" name="name" required maxlength="100"
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors"
+                placeholder="Seu nome completo">
+            </div>
+            <div>
+              <label for="phone" class="text-vip-cream text-sm font-semibold block mb-2">Telefone</label>
+              <input type="tel" id="phone" name="phone" maxlength="20"
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors"
+                placeholder="(48) 99999-9999">
+            </div>
+            <div>
+              <label for="email" class="text-vip-cream text-sm font-semibold block mb-2">Email *</label>
+              <input type="email" id="email" name="email" required maxlength="255"
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors"
+                placeholder="seu@email.com">
+            </div>
+            <div>
+              <label for="message" class="text-vip-cream text-sm font-semibold block mb-2">Mensagem *</label>
+              <textarea id="message" name="message" required maxlength="2000" rows="5"
+                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-vip-cream placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors resize-none"
+                placeholder="Como podemos ajudar?"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full py-4">
+              Enviar Mensagem
+            </button>
+          </form>
+
+          <!-- Toast -->
+          <div id="toast" class="hidden fixed bottom-24 right-6 z-50 px-6 py-3 rounded-lg shadow-lg text-sm font-semibold transition-all"></div>
+        </div>
+
+        <!-- Info -->
+        <div data-aos="fade-left">
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-vip-cream font-heading font-bold text-lg mb-3">Sede</h3>
+              <p class="text-vip-sage leading-relaxed">
+                Av. Madre Benvenuta, 1168<br>
+                Santa Mônica, Florianópolis - SC<br>
+                CEP 88035-001
+              </p>
+            </div>
+            <div>
+              <h3 class="text-vip-cream font-heading font-bold text-lg mb-3">Contato</h3>
+              <p class="text-vip-sage">
+                <a href="tel:+5548984580439" class="hover:text-vip-green transition-colors">+55 (48) 98458-0439</a>
+              </p>
+              <p class="text-vip-sage mt-1">
+                <a href="mailto:contato@barbeariavip.com.br" class="hover:text-vip-green transition-colors">contato@barbeariavip.com.br</a>
+              </p>
+            </div>
+            <div>
+              <h3 class="text-vip-cream font-heading font-bold text-lg mb-3">Horário de Funcionamento</h3>
+              <div class="text-vip-sage space-y-1">
+                <p class="flex justify-between max-w-xs"><span>Segunda a Sexta</span><span class="text-vip-cream">09:00 - 20:00</span></p>
+                <p class="flex justify-between max-w-xs"><span>Sábado</span><span class="text-vip-cream">09:00 - 18:00</span></p>
+                <p class="flex justify-between max-w-xs"><span>Domingo</span><span class="text-vip-cream">Fechado</span></p>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-vip-cream font-heading font-bold text-lg mb-3">Redes Sociais</h3>
+              <div class="flex gap-4">
+                <a href="https://instagram.com/barbeariavip" target="_blank" rel="noopener"
+                   class="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:border-vip-green/50 hover:text-vip-green transition-all text-vip-sage">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="https://facebook.com/barbeariavip" target="_blank" rel="noopener"
+                   class="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg hover:border-vip-green/50 hover:text-vip-green transition-all text-vip-sage">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-[#060606] border-t border-white/10 pt-16 pb-8 px-4 md:px-8 lg:px-16">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- About -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img src="img/logo.png" alt="Barbearia VIP" class="h-8">
+            <span class="font-heading font-extrabold text-lg text-vip-cream">@<span class="text-vip-green">VIP</span></span>
+          </div>
+          <p class="text-vip-sage text-sm leading-relaxed">
+            A barbearia premium #1 da América Latina. Desde 1998 transformando o cuidado masculino em uma experiência única.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-vip-cream font-heading font-bold mb-4">Links Rápidos</h4>
+          <ul class="space-y-2">
+            <li><a href="#sobre" class="text-vip-sage text-sm hover:text-vip-green transition-colors">Sobre Nós</a></li>
+            <li><a href="#servicos" class="text-vip-sage text-sm hover:text-vip-green transition-colors">Serviços</a></li>
+            <li><a href="#produtos" class="text-vip-sage text-sm hover:text-vip-green transition-colors">Produtos</a></li>
+            <li><a href="#unidades" class="text-vip-sage text-sm hover:text-vip-green transition-colors">Unidades</a></li>
+            <li><a href="#franquia" class="text-vip-sage text-sm hover:text-vip-green transition-colors">Franquia</a></li>
+            <li><a href="#blog" class="text-vip-sage text-sm hover:text-vip-green transition-colors">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Contato -->
+        <div>
+          <h4 class="text-vip-cream font-heading font-bold mb-4">Contato</h4>
+          <ul class="space-y-2 text-vip-sage text-sm">
+            <li>Av. Madre Benvenuta, 1168</li>
+            <li>Santa Mônica, Florianópolis - SC</li>
+            <li><a href="tel:+5548984580439" class="hover:text-vip-green transition-colors">+55 (48) 98458-0439</a></li>
+            <li><a href="mailto:contato@barbeariavip.com.br" class="hover:text-vip-green transition-colors">contato@barbeariavip.com.br</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h4 class="text-vip-cream font-heading font-bold mb-4">Newsletter</h4>
+          <p class="text-vip-sage text-sm mb-4">Receba novidades e promoções exclusivas.</p>
+          <form class="flex gap-2">
+            <input type="email" placeholder="Seu email"
+              class="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-vip-cream text-sm placeholder-vip-sage/50 focus:border-vip-green/50 focus:outline-none transition-colors">
+            <button type="submit" class="bg-vip-green text-vip-black font-bold px-4 py-2.5 rounded-lg hover:bg-vip-green/90 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-vip-sage text-xs">&copy; 2026 Barbearia VIP. Todos os direitos reservados.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-vip-sage text-xs hover:text-vip-green transition-colors">Política de Privacidade</a>
+          <a href="#" class="text-vip-sage text-xs hover:text-vip-green transition-colors">Termos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== WHATSAPP FLUTUANTE ========== -->
+  <a href="https://wa.me/5548984580439" target="_blank" rel="noopener"
+     class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform animate-pulse"
+     aria-label="WhatsApp">
+    <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
