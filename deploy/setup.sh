@@ -42,9 +42,10 @@ npm install --production=false
 npm run build
 cp css/style.css $DEPLOY_DIR/css/style.css
 
-# 5. Install Python dependencies
-echo "[5/8] Installing Python dependencies..."
-pip3 install -r $DEPLOY_DIR/api/requirements.txt
+# 5. Setup Python venv and install dependencies
+echo "[5/8] Setting up Python venv and installing dependencies..."
+python3 -m venv $DEPLOY_DIR/api/venv
+$DEPLOY_DIR/api/venv/bin/pip install -r $DEPLOY_DIR/api/requirements.txt
 
 # 6. Setup NGINX (only this site, no touching other configs)
 echo "[6/8] Configuring NGINX for $DOMAIN..."

@@ -3,5 +3,6 @@ css/style.css
 api/__pycache__/
 api/blog.db
 api/uploads/
+api/venv/
 *.pyc
 .env
